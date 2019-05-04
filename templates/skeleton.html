@@ -8,12 +8,25 @@
 	</head>
 	<body>
 		<header id="main-header">
-			
+			<a href="/home">
+				<img id="logo" src="/resources/main_logo.png">
+			</a>
+			<div id="options-right">
+				<a id="header-home" href="/home">Home</a>
+				{% if user_info %}
+					<a id="header-login" href="{{ access_link }}">Logout</a>
+					<a id="header-profile" href="/profile/{{ usr_info.nickname }}">Profile</a>
+				{% else %}
+					<a id="header-login" href="{{ access_link }}">Login</a>
+				{% endif %}
+				<a id="header-keys" href="/keys">Keys</a>
+			</div>
 		</header>
-		
-		{% block content %}{% endblock %}
-	</body>
-	<footer id="main-footer">
 
-	</footer>
+		{% block content %}{% endblock %}
+
+		<footer id="main-footer">
+
+		</footer>
+	</body>
 </html>

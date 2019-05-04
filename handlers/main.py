@@ -21,6 +21,7 @@ import os
 
 import model.user as user_info_model
 
+from google.appengine.api import users
 from model.appinfo import AppInfo
 
 # Defines path to templates
@@ -38,9 +39,15 @@ class HomeHandler(webapp2.RequestHandler):
 		user = users.get_current_user()
 		user_info = user_info_model.retrieve(user)
 
+		if user and user_info:
+			access_link = users.create_logout_url("/")
+		else:
+			access_link = users.create_login_url("/")
+
 		template_values = {
-			'usr_info': 
+			'usr_info': user_info,
 			'info': AppInfo,
+			'access_link': access_link,
 		}
 
 		template = JINJA_ENVIRONMENT.get_template("start-page.html")
