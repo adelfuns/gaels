@@ -12,15 +12,17 @@ handlers:
 - url: /resources
   static_dir: resources
   
-- url: /start-page
-  script: handlers.main.app
-
 - url: /favicon\.ico
   static_files: resources/favicon.ico
   upload: favicon\.ico
+
+- url: /.*
+  script: handlers.main.app
 
 libraries:
 - name: webapp2
   version: "2.5.2"
 - name: jinja2
   version: "2.6"
+- name: PIL
+  version: latest

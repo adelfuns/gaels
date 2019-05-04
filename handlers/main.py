@@ -16,17 +16,40 @@
 
 
 import webapp2
-from webapp2_extras import jinja2
+import jinja2
+import os
 
-class MainHandler(webapp2.RequestHandler):
+import model.user as user_info_model
+
+from model.appinfo import AppInfo
+
+# Defines path to templates
+templates_path = os.path.join(os.path.dirname(__file__),'..','templates')
+
+# Defines de Jinja environment
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(templates_path),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
+
+
+class HomeHandler(webapp2.RequestHandler):
 	def get(self):
+		user = users.get_current_user()
+		user_info = user_info_model.retrieve(user)
+
 		template_values = {
-			'name': "hola",
+			'usr_info': 
+			'info': AppInfo,
 		}
-		jinja = jinja2.get_jinja2(app=self.app)
-		self.response.write(jinja.render_template(
-			"start-page.html", **template_values));
+
+		template = JINJA_ENVIRONMENT.get_template("start-page.html")
+		self.response.write(template.render(template_values))
+
+
 
 app = webapp2.WSGIApplication([
-	('/start-page', MainHandler)
+	webapp2.Route(r'/', handler=HomeHandler),
+	webapp2.Route(r'/home', handler=HomeHandler),
+	webapp2.Route(r'/home/', handler=HomeHandler, name='home'),
 ], debug=True)
