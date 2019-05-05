@@ -1,0 +1,9 @@
+{% extends 'skeleton.html' %}
+{% block content %}
+	<div id="key-container">
+		<img id="keyimage" src="{{ key.image_path }}">
+		<span id="keyname">Key name: {{ key.name }}</span>
+		<span id="keymap">Map: <a href="/keys/m/{{ key.keymap }}">{{ key.keymap }}</a></span>
+		<p id="description"></p>
+	</div>
+{% endblock %}

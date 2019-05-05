@@ -1,0 +1,14 @@
+{% extends 'skeleton.html' %}
+{% block content %}
+	<div id="keys-container">
+		<ul id="key-list">
+			{% for key in keylist %}
+			<li><span><a href="/keys/e/{{ key.name }}">{{ key }}</a></span></li>
+			{% else %}
+    		<li>No keys found</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% block ownkeys %}
+	{% endblock %}
+{% endblock %}

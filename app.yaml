@@ -19,7 +19,16 @@ handlers:
 - url: /update-profile/.*
   script: handlers.profile.app
   login: required
-  
+
+- url: /keys
+  script: handlers.keys.app
+
+- url: /keys/e/.*
+  script: handlers.keys.app
+
+- url: /keys/m/.*
+  script: handlers.keys.app
+
 - url: /favicon\.ico
   static_files: resources/favicon.ico
   upload: favicon\.ico
