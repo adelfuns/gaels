@@ -1,0 +1,13 @@
+{% extends 'skeleton.html' %}
+{% block content %}
+	<form id="update-form" action="/update-profile/{{ usr_info.nickname }}" target="_self" method="post">
+		<span id="nickname">Nickname:</span>
+		<input id="nickname-input" name="nickname-input" {{ form }} placeholder="{{ usr_info.nickname }}">
+		</input><br/><span id="level">Level:</span>
+		<input id="level-input" name="level-input" {{ form }} placeholder="{{ usr_info.game_level }}">
+		</input><br/><span id="pmc">PMC:</span>
+		<input id="pmc-input" name="pmc-input" {{ form }} placeholder="{{ usr_info.pmc_type }}">
+		</input><br/>
+	{% block modify %}{% endblock %}
+	</form>
+{% endblock %}

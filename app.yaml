@@ -11,6 +11,14 @@ handlers:
 
 - url: /resources
   static_dir: resources
+
+- url: /profile/.*
+  script: handlers.profile.app
+  login: required
+
+- url: /update-profile/.*
+  script: handlers.profile.app
+  login: required
   
 - url: /favicon\.ico
   static_files: resources/favicon.ico
