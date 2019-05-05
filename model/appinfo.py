@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 
 class AppInfo:
 	Name = "Tarkov Key Tool"

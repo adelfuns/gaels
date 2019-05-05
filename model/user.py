@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
