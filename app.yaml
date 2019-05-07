@@ -1,5 +1,3 @@
-application: gaels
-version: 1
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -11,6 +9,9 @@ handlers:
 
 - url: /resources
   static_dir: resources
+
+- url: /styles
+  static_dir: styles
 
 - url: /profile/.*
   script: handlers.profile.app

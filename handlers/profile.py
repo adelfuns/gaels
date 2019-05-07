@@ -26,16 +26,17 @@ class ProfileHandler(webapp2.RequestHandler):
 		my_profile = user_info_model.retrieve(user)
 		form_info = "readonly"
 		template = JINJA_ENVIRONMENT.get_template("profile.html")
+		readonly = "readonly"
 
 		if user_info:
 			if user.user_id() == user_info.user_id:
-				form_info = "enabled"
+				readonly = ""
 				template = JINJA_ENVIRONMENT.get_template("update-profile.html")
 		else:
 			self.redirect("/home")
 
 		template_values = {
-			'form': form_info,
+			'readonly': readonly,
 			'usr_info': user_info,
 			'info': AppInfo,
 			'access_link': access_link,
