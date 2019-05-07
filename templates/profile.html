@@ -1,13 +1,20 @@
 {% extends 'skeleton.html' %}
 {% block content %}
-	<form id="update-form" action="/update-profile/{{ usr_info.nickname }}" target="_self" method="post">
-		<span id="nickname">Nickname:</span>
-		<input id="nickname-input" name="nickname-input" {{ form }} placeholder="{{ usr_info.nickname }}">
-		</input><br/><span id="level">Level:</span>
-		<input id="level-input" name="level-input" {{ form }} placeholder="{{ usr_info.game_level }}">
-		</input><br/><span id="pmc">PMC:</span>
-		<input id="pmc-input" name="pmc-input" {{ form }} placeholder="{{ usr_info.pmc_type }}">
-		</input><br/>
+<div class="fix">
+	<div class="card-container">
+		<div class="card cardoo" style="width: 18rem;">
+			{% if usr_info.pmc_type == 'USEC'%}
+			<img src="/resources/usec.jpg" alt="USEC" style="width:100%">
+			{% else %}
+			<img src="/resources/bear.jpg" alt="BEAR" style="width:100%">
+			{% endif %}
+			<div class="card-body">
+				<h5 class="card-title">{{ usr_info.nickname }}</h5>
+				<p class="card-text">Level: {{ usr_info.game_level }}</p>
+				<a href="/profile/{{ usr_info.nickname }}#update-form" class="btn btn-primary">Update profile</a>
+			</div>
+		</div>
+	</div>
+</div>
 	{% block modify %}{% endblock %}
-	</form>
 {% endblock %}

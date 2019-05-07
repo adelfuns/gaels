@@ -1,14 +1,54 @@
 {% extends 'skeleton.html' %}
 {% block content %}
-	<div id="keys-container">
-		<ul id="key-list">
-			{% for key in keylist %}
-			<li><span><a href="/keys/e/{{ key.name }}">{{ key }}</a></span></li>
-			{% else %}
-    		<li>No keys found</li>
-			{% endfor %}
-		</ul>
+<!-- Search form -->
+
+<div class="seach-back-container">
+	<a href="/keys#main-table" class="goback btn btn-success">Volver</a>
+	<div class="md-form mt-0 search-bar">
+		<input class="form-control" type="text" placeholder="Search" aria-label="Search">
 	</div>
-	{% block ownkeys %}
-	{% endblock %}
+</div>
+<table id="main-table" class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col"></th>
+			<th scope="col">Name</th>
+			<th scope="col">Map</th>
+			{% if user_logged %}
+			<th scope="col">Owned</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% if user_logged %}
+			{% for key in keylist %}
+			<tr>
+				<th scope="row"><a href="/keys/e/{{ key.name }}"><img src="{{ key.image_path }}"></a></th>
+				<td><a href="/keys/e/{{ key.name }}">{{ key.name }}</a></td>
+				<td><a href="/keys/m/{{ key.keymap }}#main-table">{{ key.keymap }}</a></td>
+				<td></td>
+			</tr>
+			{% else %}+
+			<tr>
+				<th scope="row">1</th>
+				<td>There are no keys</td>
+			</tr>
+			{% endfor %}
+		{% else %}
+			{% for key in keylist %}
+			<tr>
+				<th scope="row"><a href="/keys/e/{{ key.name }}"><img src="{{ key.image_path }}"></a></th>
+				<td><a href="/keys/e/{{ key.name }}">{{ key.name }}</a></td>
+				<td><a href="/keys/m/{{ key.keymap }}#main-table">{{ key.keymap }}</a></td>
+			</tr>
+			{% else %}
+			<tr>
+				<th scope="row">1</th>
+				<td>There are no keys</td>
+			</tr>
+			{% endfor %}
+		{% endif %}
+		
+	</tbody>
+</table>
 {% endblock %}
