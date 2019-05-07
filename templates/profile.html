@@ -1,0 +1,20 @@
+{% extends 'skeleton.html' %}
+{% block content %}
+<div class="fix">
+	<div class="card-container">
+		<div class="card cardoo" style="width: 18rem;">
+			{% if usr_info.pmc_type == 'USEC'%}
+			<img src="/resources/usec.jpg" alt="USEC" style="width:100%">
+			{% else %}
+			<img src="/resources/bear.jpg" alt="BEAR" style="width:100%">
+			{% endif %}
+			<div class="card-body">
+				<h5 class="card-title">{{ usr_info.nickname }}</h5>
+				<p class="card-text">Level: {{ usr_info.game_level }}</p>
+				<a href="/profile/{{ usr_info.nickname }}#update-form" class="btn btn-primary">Update profile</a>
+			</div>
+		</div>
+	</div>
+</div>
+	{% block modify %}{% endblock %}
+{% endblock %}

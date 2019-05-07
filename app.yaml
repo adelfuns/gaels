@@ -1,0 +1,46 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /templates
+  static_dir: templates
+  application_readable: true
+
+- url: /resources
+  static_dir: resources
+
+- url: /styles
+  static_dir: styles
+
+- url: /profile/.*
+  script: handlers.profile.app
+  login: required
+
+- url: /update-profile/.*
+  script: handlers.profile.app
+  login: required
+
+- url: /keys
+  script: handlers.keys.app
+
+- url: /keys/e/.*
+  script: handlers.keys.app
+
+- url: /keys/m/.*
+  script: handlers.keys.app
+
+- url: /favicon\.ico
+  static_files: resources/favicon.ico
+  upload: favicon\.ico
+
+- url: /.*
+  script: handlers.main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: "2.6"
+- name: PIL
+  version: latest
